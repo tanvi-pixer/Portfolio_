@@ -22,7 +22,7 @@ const Footer = () => {
               Tanvi Ladva
             </h3>
             <p className="text-foreground/70 text-sm">
-              Backend Developer & Freelancer
+              Web Developer & Freelancer
             </p>
           </motion.div>
 

@@ -13,6 +13,8 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
+    type: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,12 +46,14 @@ const ContactSection = () => {
       icon: Linkedin,
       label: 'LinkedIn',
       value: 'tanvi-ladva-b7722824b',
-      href: 'https://linkedin.com/in/tanvi-ladva-b7722824b',
+      href: 'https://github.com/tanviladva02/',
       color: 'bg-blue-600/10 text-blue-700 dark:text-blue-300'
     }
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -75,7 +79,7 @@ const ContactSection = () => {
           title: "Message sent successfully!",
           description: "Thank you for reaching out. I'll get back to you soon.",
         });
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', type: '', message: '' });
       } else {
         throw new Error('Failed to send message');
       }
@@ -85,7 +89,7 @@ const ContactSection = () => {
         title: "Message sent successfully!",
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', type: '', message: '' });
     }
 
     setIsSubmitting(false);
@@ -212,9 +216,6 @@ const ContactSection = () => {
             <Card className="shadow-lg">
               <CardHeader>
                 <CardTitle className="text-xl">Send a Message</CardTitle>
-                <p className="text-sm text-foreground/60">
-                  Messages are stored in MongoDB database for proper management
-                </p>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -239,6 +240,35 @@ const ContactSection = () => {
                       required
                       className="h-12"
                     />
+                  </div>
+                  
+                  <div>
+                    <Input
+                      name="phone"
+                      type="tel"
+                      placeholder="Your Phone Number"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                      className="h-12"
+                    />
+                  </div>
+                  
+                  <div>
+                    <select
+                      name="type"
+                      value={formData.type}
+                      onChange={handleInputChange}
+                      required
+                      className="h-12 w-full border rounded px-3 text-foreground bg-background"
+                    >
+                      <option value="" disabled>Select Type</option>
+                      <option value="employee">Employee</option>
+                      <option value="freelancer">Freelancer</option>
+                      <option value="agency">Agency</option>
+                      <option value="company">Company</option>
+                      <option value="other">Other</option>
+                    </select>
                   </div>
                   
                   <div>
