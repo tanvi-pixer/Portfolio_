@@ -12,60 +12,105 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A comprehensive e-commerce solution with advanced features including user authentication, product management, shopping cart, order processing, and payment integration.",
-      technologies: ["Node.js", "Express", "MongoDB", "JWT", "Stripe API", "React"],
-      category: "Full Stack",
-      status: "In Development"
-    },
-    {
       title: "TeamCamp Web",
       description: "A collaborative project management platform with team features, task management, real-time updates, and progress tracking for enhanced productivity.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "TypeScript", "Socket.io"],
+      technologies: ["Next.js", "Node.js", "MongoDB", "TypeScript"],
       category: "Web Application",
-      status: "In Development"
+      status: "Completed",
+      demo: "https://dash.teamcamp.app/"
     },
     {
       title: "BearBook",
-      description: "A social media platform with user profiles, post sharing, real-time messaging, and interactive features for community building.",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Socket.io"],
-      category: "Social Platform",
-      status: "Planned"
-    },
-    {
-      title: "PlayController",
-      description: "A gaming platform with user management, game statistics, leaderboards, and multiplayer functionality.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "WebSocket", "Redis"],
-      category: "Gaming Platform",
-      status: "Concept"
+      description: "Finance tracking app for personal and business expenses.",
+      technologies: ["Next.js", "MongoDB", "Express"],
+      category: "Finance",
+      status: "Completed",
+      demo: "https://www.bearbook.com/"
     },
     {
       title: "CSS Showcase Projects",
       description: "A collection of creative CSS projects demonstrating advanced styling techniques, animations, and responsive design patterns.",
       technologies: ["HTML", "CSS", "JavaScript", "CSS Grid", "Flexbox"],
       category: "Frontend",
+      status: "Completed",
+      demo: "https://capable-torte-f29b70.netlify.app/"
+    },
+    // {
+    //   title: "SASS Design System",
+    //   description: "A comprehensive design system built with SASS featuring reusable components, mixins, and variables for scalable styling.",
+    //   technologies: ["SASS", "HTML", "JavaScript", "CSS Architecture"],
+    //   category: "Design System",
+    //   status: "Completed"
+    // },
+    // {
+    //   title: "Tailwind Component Library",
+    //   description: "A modern component library built with Tailwind CSS featuring responsive components and utility-first design principles.",
+    //   technologies: ["Tailwind CSS", "React", "TypeScript", "Storybook"],
+    //   category: "Component Library",
+    //   status: "Completed"
+    // },
+    {
+      title: "Extra CSS Project",
+      description: "A creative CSS project.",
+      technologies: ["HTML", "CSS"],
+      category: "Frontend",
+      status: "Completed",
+      demo: "https://chic-beignet-6e4a5d.netlify.app/"
+    },
+    {
+      title: "Admin Panel",
+      description: "A modern admin panel UI.",
+      technologies: ["React", "Tailwind CSS"],
+      category: "Dashboard",
+      status: "Completed",
+      demo: "https://cheerful-travesseiro-bfe4ff.netlify.app/"
+    },
+    {
+      title: "Bootstrap Project",
+      description: "A responsive project built with Bootstrap.",
+      technologies: ["HTML", "CSS", "Bootstrap"],
+      category: "Frontend",
+      status: "Completed",
+      demo: "https://cute-kataifi-c9a6b5.netlify.app/"
+    },
+    {
+      title: "Paladar Restaurant (SASS)",
+      description: "A restaurant website built with SASS.",
+      technologies: ["HTML", "SASS", "JavaScript"],
+      category: "Restaurant",
+      status: "Completed",
+      demo: "https://splendid-palmier-e83153.netlify.app/"
+    },
+    {
+      title: "Sandbox Project (Tailwind)",
+      description: "A sandbox project using Tailwind CSS.",
+      technologies: ["HTML", "Tailwind CSS"],
+      category: "Frontend",
+      status: "Completed",
+      demo: "https://tubular-flan-f66e52.netlify.app/"
+    },
+    {
+      title: "Techwind Restaurant",
+      description: "A restaurant project using Techwind.",
+      technologies: ["HTML", "Tailwind CSS"],
+      category: "Restaurant",
+      status: "Completed",
+      demo: "https://benevolent-moxie-e1cfce.netlify.app/"
+    },
+    {
+      title: "Portfolio Project (Bootstrap)",
+      description: "A portfolio website built with Bootstrap.",
+      technologies: ["HTML", "CSS", "Bootstrap"],
+      category: "Portfolio",
+      status: "Completed",
+      demo: "https://splendid-starship-b0fa6c.netlify.app/"
+    },
+    {
+      title: "PlayController",
+      description: "A gaming platform with user management, game statistics, leaderboards, and multiplayer functionality.",
+      technologies: ["Next.js", "Node.js", "MongoDB", "WebSocket", "Redis"],
+      category: "Gaming Platform",
       status: "Completed"
-    },
-    {
-      title: "SASS Design System",
-      description: "A comprehensive design system built with SASS featuring reusable components, mixins, and variables for scalable styling.",
-      technologies: ["SASS", "HTML", "JavaScript", "CSS Architecture"],
-      category: "Design System",
-      status: "Completed"
-    },
-    {
-      title: "Tailwind Component Library",
-      description: "A modern component library built with Tailwind CSS featuring responsive components and utility-first design principles.",
-      technologies: ["Tailwind CSS", "React", "TypeScript", "Storybook"],
-      category: "Component Library",
-      status: "In Development"
-    },
-    {
-      title: "Extra Projects Collection",
-      description: "A diverse collection of experimental projects exploring new technologies, design patterns, and development techniques.",
-      technologies: ["Various", "Experimental", "Learning"],
-      category: "Experimental",
-      status: "Ongoing"
     }
   ];
 
@@ -125,7 +170,7 @@ const ProjectsSection = () => {
         {/* Project Slider */}
         <div className="relative">
           <motion.div
-            className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8"
+            className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 items-stretch"
             key={currentSlide}
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -138,8 +183,9 @@ const ProjectsSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
+                className="h-full"
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 group">
+                <Card className="h-full flex flex-col">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-4">
                       <Badge variant="outline" className="text-xs">
@@ -159,7 +205,7 @@ const ProjectsSection = () => {
                     </p>
                   </CardHeader>
                   
-                  <CardContent className="space-y-6">
+                  <CardContent className="flex flex-col flex-1 justify-between">
                     <div>
                       <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">Technologies</h4>
                       <div className="flex flex-wrap gap-2">
@@ -171,25 +217,24 @@ const ProjectsSection = () => {
                       </div>
                     </div>
                     
-                    <div className="flex space-x-3 pt-4">
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="flex-1 group/btn"
-                        disabled={project.status === 'Concept' || project.status === 'Planned'}
-                      >
-                        <Github className="mr-2 h-4 w-4 group-hover/btn:rotate-12 transition-transform" />
-                        Code
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="flex-1 group/btn"
-                        disabled={project.status === 'Concept' || project.status === 'Planned'}
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4 group-hover/btn:rotate-12 transition-transform" />
-                        Demo
-                      </Button>
+                    <div className="mt-auto pt-4 flex space-x-3">
+                      {project.demo && (
+                        <Button
+                          asChild
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 group/btn"
+                        >
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="mr-2 h-4 w-4 group-hover/btn:rotate-12 transition-transform" />
+                            Demo
+                          </a>
+                        </Button>
+                      )}
                     </div>
                   </CardContent>
                 </Card>

@@ -3,14 +3,31 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Download, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useEffect, useRef, useState } from 'react';
 
 const HeroSection = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [isHeroInView, setIsHeroInView] = useState(true);
+
   const scrollToAbout = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setIsHeroInView(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+    return () => {
+      if (heroRef.current) observer.unobserve(heroRef.current);
+    };
+  }, []);
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" ref={heroRef} className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -87,10 +104,10 @@ const HeroSection = () => {
               Get In Touch
             </Button>
             
-            <Button variant="outline" size="lg" className="group">
+            {/* <Button variant="outline" size="lg" className="group">
               <Download className="mr-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
               Download Resume
-            </Button>
+            </Button> */}
           </motion.div>
 
           <motion.div 
@@ -134,15 +151,17 @@ const HeroSection = () => {
       </div>
 
       {/* Fixed positioned scroll arrow */}
-      <motion.button
-        onClick={scrollToAbout}
-        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 p-3 rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors backdrop-blur-sm border border-foreground/10 z-50"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        whileHover={{ scale: 1.1 }}
-      >
-        <ArrowDown className="h-5 w-5" />
-      </motion.button>
+      {isHeroInView && (
+        <motion.button
+          onClick={scrollToAbout}
+          className="fixed bottom-8 left-1/2 transform -translate-x-1/2 p-3 rounded-full bg-foreground/10 hover:bg-foreground/20 transition-colors backdrop-blur-sm border border-foreground/10 z-50"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          whileHover={{ scale: 1.1 }}
+        >
+          <ArrowDown className="h-5 w-5" />
+        </motion.button>
+      )}
     </section>
   );
 };
